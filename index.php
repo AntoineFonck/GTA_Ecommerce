@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,8 +10,13 @@
         <link href="./css/index.css" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
     </head>
-    <body>
-        <h1>Welcome to the Gun Shop</h1>
+	<body>
+<?php
+if (isset($_SESSION['username']))
+	echo "<h1>Welcome to the Gun Shop, " . $_SESSION['username'] . "</h1>";
+else
+	echo "<h1>Welcome to the Gun Shop</h1>"
+?>
         <a href="index.php" class="btn">Home</a>
         <a href="./php/categories.php" class="btn">Categories</a>
         <a href="./views/sign.html" class="btn">Sign in</a>

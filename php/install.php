@@ -49,7 +49,8 @@ $sql = "CREATE TABLE `products` (
 	`name` char(255) NOT NULL,
 	`price` int(11) NOT NULL,
 	`description` varchar(1000) NOT NULL,
-	`categorie` char(255) NOT NULL,
+	`categorie1` char(255) NOT NULL,
+	`categorie2` char(255) NOT NULL,
 	`pictures` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 if (mysqli_query($link, $sql))
@@ -58,12 +59,12 @@ else
 	echo "Error creating products table" . mysqli_error($link);
 mysqli_free_result($sql);
 
-$sql = "INSERT INTO `products` (`id`, `name`, `price`, `description`, `categorie`, `pictures`) VALUES
+$sql = "INSERT INTO `products` (`id`, `name`, `price`, `description`, `categorie1`, `categorie2`, `pictures`) VALUES
 	(1, 'Baseball Bat', 50, 'The Baseball Bat is one of the first melee weapons featured in the games. It is, by far, the easiest weapon to obtain, with one always at the safehouse in t
 	he games taking place in Grand Theft Auto III and Grand Theft Auto: Liberty City Stories and a common sight throughout the other games. The baseball bat is also commonly seen in the
-	hands of gangsters, mobsters, and sometimes civilians throughout the games.', 'Melee', ''),
-	(2, 'Knuckle Dusters', 25, 'The Knuckle Dusters (formerly known as Brass Knuckles) is a type of melee weapon featured in every 3D Universe game since Grand Theft Auto: Vice City, and are featured in Grand Theft Auto V and Grand Theft Auto Online, as part of the Ill-Gotten Gains Part 2 Update.', 'Melee', ''),
-	(3, 'Knife', 35, 'The Knife is a melee weapon featured in Grand Theft Auto: Vice City, Grand Theft Auto: San Andreas, Grand Theft Auto: Liberty City Stories, Grand Theft Auto: Vice City Stories, Grand Theft Auto IV, Grand Theft Auto V and Grand Theft Auto Online. It is manufactured by Hawk & Little in GTA V.', 'Melee', '');";
+	hands of gangsters, mobsters, and sometimes civilians throughout the games.', 'Melee', 'Blunt', 'https://vignette.wikia.nocookie.net/gtawiki/images/5/59/BaseballBat-GTAV.png/revision/latest/scale-to-width-down/350?cb=20160612221707'),
+	(2, 'Knuckle Dusters', 25, 'The Knuckle Dusters (formerly known as Brass Knuckles) is a type of melee weapon featured in every 3D Universe game since Grand Theft Auto: Vice City, and are featured in Grand Theft Auto V and Grand Theft Auto Online, as part of the Ill-Gotten Gains Part 2 Update.', 'Melee', 'Blunt', 'https://vignette.wikia.nocookie.net/gtawiki/images/b/b7/BrassKnuckles-GTAV.png/revision/latest/scale-to-width-down/350?cb=20150708153813'),
+	(3, 'Knife', 35, 'The Knife is a melee weapon featured in Grand Theft Auto: Vice City, Grand Theft Auto: San Andreas, Grand Theft Auto: Liberty City Stories, Grand Theft Auto: Vice City Stories, Grand Theft Auto IV, Grand Theft Auto V and Grand Theft Auto Online. It is manufactured by Hawk & Little in GTA V.', 'Melee', 'Sharp', 'https://vignette.wikia.nocookie.net/gtawiki/images/a/a7/Knife-GTAV.png/revision/latest/scale-to-width-down/350?cb=20130920185917');";
 if (mysqli_query($link, $sql))
 	echo "Data successfully inserted in products table";
 else

@@ -28,13 +28,13 @@ if (isset($_POST['login']) && isset($_POST['passwd']) && $_POST['submit'] === "O
 			{
 				$_SESSION['rights'] = 1;
 				$_SESSION['username'] = $login;
-				echo "<script>location.href='../index.php'; alert('Welcome, $login');</script>";
+				echo "<script>location.href='../index.php';</script>";
 			}
 			if ($admin == 1)
 			{
 				$_SESSION['rights'] = 10;
 				$_SESSION['username'] = $login;
-				echo "<script>location.href='admin.php'; alert('Welcome, $login, here is your admin page');</script>";
+				echo "<script>location.href='admin.php';</script>";
 			}
 		}
 		else
