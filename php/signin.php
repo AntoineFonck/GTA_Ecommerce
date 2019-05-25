@@ -1,5 +1,7 @@
 <?php
 session_start();
+if ($_SESSION['rights'] === 10 || $_SESSION['rights'] === 1)
+	exit("<script>location.href='../index.php'; alert('You are already logged in ".$_SESSION['rights']."');</script>");
 if (isset($_POST['login']) && isset($_POST['passwd']) && $_POST['submit'] === "OK")
 {
 	$servername = "localhost";
