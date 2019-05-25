@@ -8,6 +8,7 @@ session_start();
         <title>Gun Shop</title>
         <link rel="icon" href="https://www.favicon.cc/logo3d/350003.png">
         <link href="./css/index.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
         <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
     </head>
 	<body>
@@ -18,7 +19,8 @@ else
 	echo "<h1>Welcome to the Gun Shop</h1>"
 ?>
         <a href="index.php" class="btn">Home</a>
-		<a href="./php/categories.php" class="btn">Categories</a>
+        <a href="./php/categories.php" class="btn">Categories</a>
+        <a href="./php/basket.php" class="btn">Basket <i class="fas fa-shopping-basket"></i></a>
 		<?php
 		if ($_SESSION['rights'] !== 1 && $_SESSION['rights'] !== 10)
         	echo "<a href='./views/sign.html' class='btn'>Sign in</a>";
