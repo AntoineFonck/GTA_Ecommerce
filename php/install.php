@@ -84,8 +84,8 @@ else
 mysqli_free_result($sql);
 
 $passwd = hash("whirlpool", "admin");
-echo $passwd;
-$sql = "INSERT INTO `users` (`id`, `login`, `password`, `email`, `admin`) VALUES (1, \"admin\", \"$passwd\", \"qfadene@student.42.fr\", 1);";
+$passwd2 = hash("whirlpool", "user");
+$sql = "INSERT INTO `users` (`id`, `login`, `password`, `email`, `admin`) VALUES (1, \"admin\", \"$passwd\", \"qfadene@student.42.fr\", 1), (2, 'user', '$passwd2', 'user@email.com', 0);";
 if (mysqli_query($link, $sql))
 	echo "admin user successfully inserted";
 else
@@ -102,6 +102,8 @@ $sql .= "ALTER TABLE `commands`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;";
 $sql .= "ALTER TABLE `products`
 	  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;";
+$sql .= "ALTER TABLE `users`
+	  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;";
 if (mysqli_multi_query($link, $sql)) {
 	echo "request " . $sql . "= Alter Tables done successfully";
 } else {
