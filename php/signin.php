@@ -20,7 +20,7 @@ if (isset($_POST['login']) && isset($_POST['passwd']) && $_POST['submit'] === "O
 	$query = "SELECT password, admin FROM users WHERE login='$login'";
 	if ($result = mysqli_query($link, $query))
 	{
-		$row = mysqli_fetch_array($result ,MYSQLI_ASSOC);
+		$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 		$admin = $row['admin'];
 		if ($hashpw === $row['password'])
 		{
@@ -28,19 +28,19 @@ if (isset($_POST['login']) && isset($_POST['passwd']) && $_POST['submit'] === "O
 			{
 				$_SESSION['rights'] = 1;
 				$_SESSION['username'] = $login;
-				header("location: ../index.php");
+				echo "<script>location.href='../index.php'; alert('Welcome, $login');</script>";
 			}
 			if ($admin == 1)
 			{
 				$_SESSION['rights'] = 10;
 				$_SESSION['username'] = $login;
-				header("location: admin.php");
+				echo "<script>location.href='admin.php'; alert('Welcome, $login, here is your admin page');</script>";
 			}
 		}
 		else
-			header("location: ../views/sign.html");
+			echo "<script>location.href='../views/sign.html'; alert('Wrong username or password');</script>";
 	}
 	else
-		header("location: ../views/sign.html");
+		echo "<script>location.href='../views/sign.html'; alert('Wrong username or password');</script>";
 }
 ?>
