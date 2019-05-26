@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "qwertyuiop";
-//$password = "Qfadene";
+//$password = "qwertyuiop";
+$password = "Qfadene";
 $dbname = "gun_shop";
 
 $link = mysqli_connect($servername, $username, $password);
