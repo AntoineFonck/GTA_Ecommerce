@@ -1,9 +1,15 @@
 <?php
 session_start();
+if(!empty($_POST['catlist']))
+	$from = $_POST['catlist'];
 if(empty($_SESSION['basket']))
 	$_SESSION['basket'] = array();
 if($_POST['add'])
 	$_SESSION['basket'][] = $_POST['add'];
+
+if($_POST['submit'] === "Pim" || $_POST['submit'] === "Bang" || $_POST['submit'] === "Bang_Bang" || $_POST['submit'] === "Boom")
+	$from = $_POST['submit'];
+
 $servername = "localhost";
 $username = "root";
 $password = "qwertyuiop";
@@ -45,21 +51,38 @@ if (!$link) {
 			echo "<a href='./admin.php' class='btn'>Admin</a>";
 		?>
 		<form id="catform" action="categories.php" method="POST"></form>
-		<select name="catlist" form="carform">
-			<option value="volvo">Volvo</option>
-			<option value="saab">Saab</option>
-			<option value="opel">Opel</option>
-			<option value="audi">Audi</option>
+		<select name="catlist" form="catform">
+		<?php
+		$sql = "SELECT * FROM `categories`;";
+		if ($result = mysqli_query($link, $sql))
+		{
+			$row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+			print_r($row);
+			foreach ($row as $data)
+			{
+				if ($data['name'] !== "PIM" && $data['name'] !== "BANG" && $data['name'] !== "BANG_BANG" && $data['name'] !== "BOOM")
+				{
+					$category = $data['name'];
+					echo "<option value='" . $category . "'>". $category ."</option>";
+				}
+			}
+		}
+		else
+			echo "<p>ERROR RETRIEVING CATEGORIES</p>";
+			echo mysqli_error($link);
+		?>
 		</select>
 		<button class="catokbtn mr" type="submit" value="OK" name="submit" form="catform">OK</button>
 		<button class="catbtn" type="submit" value="Pim" name="submit" form="catform">Pim</button>
 		<button class="catbtn" type="submit" value="Bang" name="submit" form="catform">Bang</button>
-		<button class="catbtn" type="submit" value="Bang-Bang" name="submit" form="catform">Bang-Bang</button>
+		<button class="catbtn" type="submit" value="Bang_Bang" name="submit" form="catform">Bang-Bang</button>
 		<button class="catbtn" type="submit" value="Boom" name="submit" form="catform">Boom</button>
 		<div id="products">
-		<form id="additem" action="categories.php" method="POST"></form>
-	<?php
-	$query = "SELECT * FROM products";
+<?php
+			if (!empty($from))
+				$query = "SELECT * FROM products WHERE categorie1='$from' or categorie2='$from'";
+			else
+				$query = "SELECT * FROM products";
 	if ($result = mysqli_query($link, $query))
 	{
 		$row = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -78,7 +101,7 @@ if (!$link) {
 			echo "<p class='pricetext'>" . $data['price'] . "$</p>";
 			echo "</div>";
 			echo "<div class='add'>";
-			echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='add' form='additem'>ADD</button>";
+			echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='add' form='catform'>ADD</button>";
 			echo "</div>";
 			echo "</div>";
 		}
