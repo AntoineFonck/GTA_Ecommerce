@@ -127,7 +127,7 @@ select {
 }
 
 .catbtn{
-    color:#999;
+    color:#fff;
     background:rgba(0, 0, 0, 0.5);
     padding:10px 20px;
     font-size:2vmin;
@@ -135,6 +135,7 @@ select {
     letter-spacing:2px;
     text-transform:uppercase;
     border: none;
+    border-radius: 5px;
 }
 
 .catbtn:hover{
@@ -256,4 +257,9 @@ select {
     background:#fff;
     padding:4vmin 5vmin;
     color:#1b1b1b;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
 }

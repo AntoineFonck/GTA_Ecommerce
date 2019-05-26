@@ -15,7 +15,7 @@ if (!$link) {
 	echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
 	exit;
 }
-if ($_POST['submit'] === "products" || $_POST['submit'] === "categories" || $_POST['submit'] === "users" || $_POST['submit'] === "orders")
+if ($_POST['submit'] === "products" || $_POST['submit'] === "categories" || $_POST['submit'] === "users" || $_POST['submit'] === "commands")
     $from = $_POST['submit'];
 ?>
 <!DOCTYPE html>
@@ -34,9 +34,9 @@ if ($_POST['submit'] === "products" || $_POST['submit'] === "categories" || $_PO
 		<button class="catbtn" type="submit" value="products" name="submit" form="adminform">Products</button>
 		<button class="catbtn" type="submit" value="categories" name="submit" form="adminform">Categories</button>
 		<button class="catbtn" type="submit" value="users" name="submit" form="adminform">Users</button>
-		<button class="catbtn" type="submit" value="orders" name="submit" form="adminform">Orders</button>
+		<button class="catbtn" type="submit" value="commands" name="submit" form="adminform">Commands</button>
 		<div id="products">
-		<form id="additem" action="categories.php" method="POST"></form>
+		<form id="modif" action="categories.php" method="POST"></form>
 	<?php
 	$query = "SELECT * FROM $from";
 	if ($result = mysqli_query($link, $query))
@@ -44,26 +44,150 @@ if ($_POST['submit'] === "products" || $_POST['submit'] === "categories" || $_PO
         $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
         if ($from === "products")
         {
+			echo "<h3>New article</h3>";
+			echo "<div class='prod'>";
+			echo "<div class='left'>";
+			echo "<p class='prodtitle'>Name</p>";
+			echo "<input type='text' name='name' placeholder='Name'>";
+			echo "<p class='prodtitle'>Image</p>";
+			echo "<input type='text' name='pictures' placeholder='Image'>";
+			echo "</div>";
+			echo "<div class='mid'>";
+			echo "<p class='catetitle'>Categorie 1 / Categorie 2</p>";
+			echo "<input type='text' name='categorie1' placeholder='Categorie 1'>";
+			echo "<input type='text' name='categorie2' placeholder='Categorie 2'>";
+			echo "<p class='catedesc'>Description</p>";
+			echo "<input type='text' name='description' placeholder='Description'>";
+			echo "<p class='pricetext'>Price in $</p>";
+			echo "<input type='text' name='price' placeholder='Price'>";
+			echo "</div>";
+			echo "<div class='add'>";
+			echo "<button class='catbtn' type='submit' value='add-cate' name='add' form='modif'>Add Article</button>";
+			echo "</div>";
+			echo "</div>";
+
+			echo "<h3>All article</h3>";
             foreach ($row as $data)
             {
                 echo "<div class='prod'>";
-                echo "<div class='left'>";
-                echo "<p class='prodtitle'>" . $data['name'] . "</p>";
-                echo "<img src='" . $data['pictures'] . "' alt='" . $data['name'] . "'>";
-                echo "</div>";
-                echo "<div class='mid'>";
-                echo "<p class='catetitle'> Price/U: ". $data['pictures'] ."</p>";
-                echo "<p class='catedesc'> Quantity:" . $data['description'] . "</p>";
-                echo "</div>";
-                echo "<div class='price'>";
-                echo "<p class='pricetext'>" . $data['price'] . "$</p>";
-                echo "</div>";
-                echo "<div class='add'>";
-                echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='add' form='additem'>ADD</button>";
-                echo "</div>";
-                echo "</div>";
+				echo "<div class='left'>";
+				echo "<p class='prodtitle'>Name</p>";
+				echo "<input type='text' name='name' placeholder='". $data['name'] ."'>";
+				echo "<img src='". $data['pictures'] . "' alt='". $data['name'] . "'>";
+				echo "<input type='text' name='pictures' placeholder='". $data['pictures'] ."'>";
+				echo "</div>";
+				echo "<div class='mid'>";
+				echo "<p class='catetitle'>". $data['categorie1'] ." / ". $data['categorie2'] . "</p>";
+				echo "<input type='text' name='categorie1' placeholder='". $data['categorie1'] ."'>";
+				echo "<input type='text' name='categorie2' placeholder='". $data['categorie2'] ."'>";
+				echo "<p class='catedesc'>". $data['description'] ."</p>";
+				echo "<input type='text' name='description' placeholder='". $data['description'] ."'>";
+				echo "<p class='pricetext'>". $data['price'] ."$</p>";
+				echo "<input type='text' name='price' placeholder='". $data['price'] ."'>";
+				echo "</div>";
+				echo "<div class='add'>";
+				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='prod_change' form='modif'>Change</button>";
+				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='prod_delete' form='modif'>Delete</button>";
+				echo "</div>";
+				echo "</div>";
             }
-        }
+		}
+		if ($from === "categories")
+        {
+			echo "<div class='list'>";
+				echo "<h3>New categorie</h3>";
+				echo "<div class='prod'>";
+				echo "<div class='left'>";
+				echo "<p class='prodtitle'>Categorie Name</p>";
+				echo "<input type='text' name='name' placeholder='Categorie Name'>";
+				echo "</div>";
+				echo "<div class='add'>";
+				echo "<button class='catbtn' type='submit' value='add-cate' name='add' form='modif'>Add Categorie</button>";
+				echo "</div>";
+				echo "</div>";
+
+				echo "<h3>All categories</h3>";
+            foreach ($row as $data)
+            {
+                echo "<div class='prod'>";
+				echo "<div class='left'>";
+				echo "<p class='prodtitle'>Categorie Name</p>";
+				echo "<input type='text' name='name' placeholder='". $data['name'] ."'>";
+				echo "</div>";
+				echo "<div class='add'>";
+				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='cate_change' form='modif'>Change</button>";
+				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='cate_delete' form='modif'>Delete</button>";
+				echo "</div>";
+				echo "</div>";
+			}
+			echo "</div>";
+		}
+		if ($from === "users")
+        {
+			echo "<div class='list'>";
+				echo "<h3>New user</h3>";
+				echo "<div class='prod'>";
+				echo "<div class='left'>";
+				echo "<p class='prodtitle'>Login</p>";
+				echo "<input type='text' name='login' placeholder='Login'>";
+				echo "<p class='prodtitle'>Password</p>";
+				echo "<input type='text' name='passwd' placeholder='Password'>";
+				echo "<p class='prodtitle'>Email</p>";
+				echo "<input type='text' name='email' placeholder='Email'>";
+				echo "<p class='prodtitle'>Admin</p>";
+				echo "<input type='text' name='admin' placeholder='Admin'>";
+				echo "</div>";
+				echo "<div class='add'>";
+				echo "<button class='catbtn' type='submit' value='add-user' name='add' form='modif'>Add User</button>";
+				echo "</div>";
+				echo "</div>";
+
+			echo "<h3>All users</h3>";
+            foreach ($row as $data)
+            {
+                echo "<div class='prod'>";
+				echo "<div class='left'>";
+				echo "<p class='prodtitle'>Login</p>";
+				echo "<input type='text' name='login' placeholder='". $data['login'] ."'>";
+				echo "<p class='prodtitle'>Password</p>";
+				echo "<input type='text' name='passwd' placeholder='". $data['password'] ."'>";
+				echo "<p class='prodtitle'>Email</p>";
+				echo "<input type='text' name='email' placeholder='". $data['email'] ."'>";
+				echo "<p class='prodtitle'>Admin</p>";
+				echo "<input type='text' name='admin' placeholder='". $data['admin'] ."'>";
+				echo "</div>";
+				echo "<div class='add'>";
+				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='user_change' form='modif'>Change</button>";
+				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='user_delete' form='modif'>Delete</button>";
+				echo "</div>";
+				echo "</div>";
+			}
+			echo "</div>";
+		}
+		if ($from === "commands")
+        {
+			echo "<div class='list'>";
+            foreach ($row as $data)
+            {
+                echo "<div class='prod'>";
+				echo "<div class='left'>";
+				echo "<p class='prodtitle'>Login</p>";
+				echo "<input type='text' name='login' placeholder='". $data['login'] ."'>";
+				echo "<p class='prodtitle'>Password</p>";
+				echo "<input type='text' name='passwd' placeholder='". $data['password'] ."'>";
+				echo "<p class='prodtitle'>Email</p>";
+				echo "<input type='text' name='email' placeholder='". $data['email'] ."'>";
+				echo "<p class='prodtitle'>Admin</p>";
+				echo "<input type='text' name='admin' placeholder='". $data['admin'] ."'>";
+				echo "</div>";
+				echo "<div class='add'>";
+				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='prod_change' form='modif'>Change</button>";
+				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='prod_delete' form='modif'>Delete</button>";
+				echo "</div>";
+				echo "</div>";
+			}
+			echo "</div>";
+		}
 	}
 	?>
 		</div>
