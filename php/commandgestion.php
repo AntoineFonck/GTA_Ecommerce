@@ -4,6 +4,7 @@ if ($_SESSION['rights'] !== 10)
 	exit("<script>location.href='../index.php'; alert('You are not an admin ".$_SESSION['rights']."');</script>");
 $servername = "localhost";
 $password = "qwertyuiop";
+$password = "Qfadene";
 $username = "root";
 $dbname = "gun_shop";
 
@@ -15,7 +16,13 @@ if (!$link) {
 	exit;
 }
 
-$id = $_POST['idcommand'];
-$sql = "DELETE * FROM `commands` WHERE id='$id'";
-if (mysqli_query($link, $sql))
+if (!empty($_POST['command_delete']))
+{
+	$id = $_POST['command_delete'];
+	$sql = "DELETE FROM `commands` WHERE id=$id";
+	if (mysqli_query($link, $sql))
+		echo "<script>location.href='./admin.php'; alert('Command deleted');</script>";
+	else
+		echo "<script>location.href='./admin.php'; alert('Problem, command not deleted');</script>"; 
+}
 ?>

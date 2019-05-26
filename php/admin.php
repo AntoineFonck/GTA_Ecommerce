@@ -4,8 +4,8 @@ if ($_SESSION['rights'] !== 10)
     exit("<script>location.href='../index.php'; alert('You are not an admin ".$_SESSION['rights']."');</script>");
 $servername = "localhost";
 $username = "root";
-//$password = "qwertyuiop";
-$password = "Qfadene";
+$password = "qwertyuiop";
+//$password = "Qfadene";
 $dbname = "gun_shop";
 
 $link = mysqli_connect($servername, $username, $password, $dbname);
@@ -56,7 +56,7 @@ if ($_POST['submit'] === "products" || $_POST['submit'] === "categories" || $_PO
 		<form id="userform" action="./usergestion.php" method="POST"></form>
 		<form id="userform2" action="./usergestion2.php" method="POST"></form>
 		<form id="cateform" action="./categestion.php" method="POST"></form>
-		<form id="cateform2" action="./categestion.php" method="POST"></form>
+		<form id="cateform2" action="./categestion2.php" method="POST"></form>
 		<form id="commandform" action="./commandgestion.php" method="POST"></form>
 	<?php
 	$query = "SELECT * FROM $from";
@@ -218,7 +218,7 @@ if ($_POST['submit'] === "products" || $_POST['submit'] === "categories" || $_PO
 					echo "<p class='prodtitle'>ID Article: ". $elem ." Quantity: ". $quantity[$j] ."</p>";
 					$j++;
 				}
-				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='user_delete' form='commandform'>Delete</button>";
+				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='command_delete' form='commandform'>Delete</button>";
 				echo "</div>";
 				echo "</div>";
 			}
