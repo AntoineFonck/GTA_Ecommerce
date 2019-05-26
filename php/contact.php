@@ -20,9 +20,13 @@ session_start();
 		if ($_SESSION['rights'] !== 1 && $_SESSION['rights'] !== 10)
         	echo "<a href='../views/sign.html' class='btn'>Sign in</a>";
 		else
-			echo "<a href='./logout.php' class='btn'>Log out</a>";
+			echo "<a href='../views/logout.html' class='btn'>Log out</a>";
 		?>
         <a href="./contact.php" class="btn">Contact</a>
+        <?php
+		if ($_SESSION['rights'] === 10)
+			echo "<a href='./admin.php' class='btn'>Admin</a>";
+		?>
         <div id="contact">
             <h3>Join us at those addresses</h3>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2622.9832959896635!2d2.316167316315188!3d48.896655505964915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fa9e5c88119%3A0x75e95ba431790f9b!2s96+Boulevard+Bessi%C3%A8res%2C+75017+Paris!5e0!3m2!1sfr!2sfr!4v1558856361234!5m2!1sfr!2sfr"  frameborder="0" style="border:0" allowfullscreen></iframe>

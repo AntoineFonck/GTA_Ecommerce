@@ -44,6 +44,20 @@ else if (!empty($_SESSION['basket']) && $_POST['submit'] === "OK" && empty($_SES
 	</head>
 	<body>
 		<h1>Basket <i class="fas fa-shopping-basket"></i></h1>
+		<a href="../index.php" class="btn">Home</a>
+        <a href="./categories.php" class="btn">Categories</a>
+        <a href="./basket.php" class="btn">Basket <i class="fas fa-shopping-basket"></i></a>
+		<?php
+		if ($_SESSION['rights'] !== 1 && $_SESSION['rights'] !== 10)
+        	echo "<a href='../views/sign.html' class='btn'>Sign in</a>";
+		else
+			echo "<a href='../views/logout.html' class='btn'>Log out</a>";
+		?>
+		<a href="./contact.php" class="btn">Contact</a>
+		<?php
+		if ($_SESSION['rights'] === 10)
+			echo "<a href='./admin.php' class='btn'>Admin</a>";
+		?>
 		<form id="validate" action="basket.php" method="POST"></form>
         <?php
 		sort($_SESSION['basket']);

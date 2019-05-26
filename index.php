@@ -25,9 +25,13 @@ else
 		if ($_SESSION['rights'] !== 1 && $_SESSION['rights'] !== 10)
         	echo "<a href='./views/sign.html' class='btn'>Sign in</a>";
 		else
-			echo "<a href='./php/logout.php' class='btn'>Log out</a>";
+			echo "<a href='./views/logout.html' class='btn'>Log out</a>";
 		?>
         <a href="./php/contact.php" class="btn">Contact</a>
+        <?php
+		if ($_SESSION['rights'] === 10)
+			echo "<a href='./php/admin.php' class='btn'>Admin</a>";
+		?>
         <div id='homevideo'>
             <img src="http://www.searchmap.eu/blog/wp-content/uploads/2015/05/zyjWZWo.gif" alt="Cargun">
         </div>

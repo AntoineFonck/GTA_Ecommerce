@@ -4,8 +4,8 @@ if ($_SESSION['rights'] !== 10)
     exit("<script>location.href='../index.php'; alert('You are not an admin ".$_SESSION['rights']."');</script>");
 $servername = "localhost";
 $username = "root";
-$password = "qwertyuiop";
-//$password = "Qfadene";
+//$password = "qwertyuiop";
+$password = "Qfadene";
 $dbname = "gun_shop";
 
 $link = mysqli_connect($servername, $username, $password, $dbname);
@@ -25,11 +25,25 @@ if ($_POST['submit'] === "products" || $_POST['submit'] === "categories" || $_PO
 		<title>Gun Shop</title>
 		<link rel="icon" href="https://www.favicon.cc/logo3d/350003.png">
 		<link href="../css/index.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
         <h1>Admin section</h1>
-        
+        <a href="../index.php" class="btn">Home</a>
+        <a href="./categories.php" class="btn">Categories</a>
+        <a href="./basket.php" class="btn">Basket <i class="fas fa-shopping-basket"></i></a>
+		<?php
+		if ($_SESSION['rights'] !== 1 && $_SESSION['rights'] !== 10)
+        	echo "<a href='../views/sign.html' class='btn'>Sign in</a>";
+		else
+			echo "<a href='../views/logout.html' class='btn'>Log out</a>";
+		?>
+		<a href="./contact.php" class="btn">Contact</a>
+		<?php
+		if ($_SESSION['rights'] === 10)
+			echo "<a href='./admin.php' class='btn'>Admin</a>";
+		?>
 		<form id="adminform" action="admin.php" method="POST"></form>
 		<button class="catbtn" type="submit" value="products" name="submit" form="adminform">Products</button>
 		<button class="catbtn" type="submit" value="categories" name="submit" form="adminform">Categories</button>
@@ -62,7 +76,7 @@ if ($_POST['submit'] === "products" || $_POST['submit'] === "categories" || $_PO
 			echo "<input type='text' name='price' placeholder='Price'>";
 			echo "</div>";
 			echo "<div class='add'>";
-			echo "<button class='catbtn' type='submit' value='add-cate' name='add' form='modif'>Add Article</button>";
+			echo "<button class='catbtn' type='submit' value='add-prod' name='add' form='modif'>Add Article</button>";
 			echo "</div>";
 			echo "</div>";
 
@@ -191,6 +205,5 @@ if ($_POST['submit'] === "products" || $_POST['submit'] === "categories" || $_PO
 	}
 	?>
 		</div>
-		<a href="index.php" class="homecat">Home</a>
 	</body>
 </html>

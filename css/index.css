@@ -30,6 +30,7 @@ select {
     color: white;
     padding: 1vmin;
     margin-right: 1vmin;
+    margin-top: 5vmin;
     width: 20vmin;
     border: none;
     font-size: 1.5vmin;
@@ -136,6 +137,7 @@ select {
     text-transform:uppercase;
     border: none;
     border-radius: 5px;
+    margin-top: 5vmin;
 }
 
 .catbtn:hover{
