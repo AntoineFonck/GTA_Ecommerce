@@ -81,7 +81,8 @@ else if (!empty($_SESSION['basket']) && $_POST['submit'] === "OK" && empty($_SES
             if ($result = mysqli_query($link, $query))
             {
                 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                $tot += $row['price'];
+				$tot += ($row['price'] * $quant);
+				echo "<div class='basket'>";
                 echo "<div class='prod'>";
                 echo "<div class='left'>";
                 echo "<p class='prodtitle'>" . $row['name'] . "</p>";
@@ -91,12 +92,15 @@ else if (!empty($_SESSION['basket']) && $_POST['submit'] === "OK" && empty($_SES
                 echo "<p class='pricetext'>" . $row['price'] . "$ / QUANT=x" . $quant ."</p>";
         		echo "<button class='catbtn' type='submit' value='".$row['id']."' name='delete' form='validate'>Delete x1 product</button>";
                 echo "</div>";
-                echo "</div>";
+				echo "</div>";
+				echo "</div>";
 			}
 		}
-		if (!empty($_SESSION['basket']))
-        	echo "<p class='totalprice'>" . $tot . "$</p>";
-        	echo "<button class='catokbtn mr' type='submit' value='OK' name='submit' form='validate'>Validate Basket</button>";
+		if ($tot > 0)
+		{
+			echo "<p style='color:white;font-size:4vmin;'>Total: " . $tot . " $</p>";
+			echo "<button class='catokbtn mr' type='submit' value='OK' name='submit' form='validate'>Validate Basket</button>";
+		}
 		?>
 		</div>
 	</body>
