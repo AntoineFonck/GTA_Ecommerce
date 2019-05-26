@@ -41,7 +41,7 @@ if (!$link) {
 		<button class="catbtn" type="submit" value="Pim" name="submit" form="catform">Pim</button>
 		<button class="catbtn" type="submit" value="Bang" name="submit" form="catform">Bang</button>
 		<button class="catbtn" type="submit" value="Bang-Bang" name="submit" form="catform">Bang-Bang</button>
-		<button class="catbtn" type="submit" value="Boum" name="submit" form="catform">Boum</button>
+		<button class="catbtn" type="submit" value="Boom" name="submit" form="catform">Boom</button>
 		<div id="products">
 		<form id="additem" action="categories.php" method="POST"></form>
 	<?php
@@ -71,5 +71,6 @@ if (!$link) {
 	}
 	?>
 		</div>
+		<a href="index.php" class="homecat">Home</a>
 	</body>
 </html>
