@@ -37,7 +37,7 @@ if (isset($_POST['login']) && isset($_POST['passwd']) && $_POST['submit'] === "O
 			{
 				$_SESSION['rights'] = 10;
 				$_SESSION['username'] = $login;
-				echo "<script>location.href='admin.php';</script>";
+				echo "<script>location.href='./admin.php';</script>";
 			}
 		}
 		else
