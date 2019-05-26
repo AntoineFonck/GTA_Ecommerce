@@ -31,6 +31,6 @@ else
         <div id='homevideo'>
             <img src="http://www.searchmap.eu/blog/wp-content/uploads/2015/05/zyjWZWo.gif" alt="Cargun">
         </div>
-        <a href="./php/categories.php" class="productsbtn">Let's see all products !!</a>
+        <a href="./php/categories.php" class="productsbtn">Let's see all products !!!</a>
     </body>
 </html>

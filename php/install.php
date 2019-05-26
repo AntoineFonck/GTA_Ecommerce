@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "qwertyuiop";
-//$password = "Qfadene";
+//$password = "qwertyuiop";
+$password = "Qfadene";
 $dbname = "gun_shop";
 
 $link = mysqli_connect($servername, $username, $password);
@@ -16,12 +16,12 @@ if (!$link) {
 echo "Success: A proper connection to MySQL was made! The $dbname is great." . PHP_EOL;
 echo "Host information: " . mysqli_get_host_info($link) . PHP_EOL;
 echo "<br>";
-/*
+
 if (mysqli_query($link, "DROP DATABASE IF EXISTS`gun_shop`"))
 	echo "Deleted previous gun_shop db if it existed<br>";
 else
 	echo "Didn't delete $dbname<br>";
-*/
+
 $sql = "CREATE DATABASE gun_shop";
 if (mysqli_query($link, $sql))
 	echo "Database gun_shop created successfully";
