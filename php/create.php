@@ -6,8 +6,8 @@ if (isset($_POST['login']) && isset($_POST['passwd']) && isset($_POST['repasswd'
 {
 	$servername = "localhost";
 	$username = "root";
-	//$password = "qwertyuiop";
-	$password = "Qfadene";
+	$password = "qwertyuiop";
+	//$password = "Qfadene";
 	$dbname = "gun_shop";
 
 	$link = mysqli_connect($servername, $username, $password, $dbname);
