@@ -80,7 +80,7 @@ if ($_POST['submit'] === "products" || $_POST['submit'] === "categories" || $_PO
 			echo "</div>";
 			echo "</div>";
 
-			echo "<h3>All article</h3>";
+			echo "<h3>All articles</h3>";
             foreach ($row as $data)
             {
                 echo "<div class='prod'>";
@@ -180,23 +180,38 @@ if ($_POST['submit'] === "products" || $_POST['submit'] === "categories" || $_PO
 		}
 		if ($from === "commands")
         {
-			echo "<div class='list'>";
+			echo "<h3>All Commands</h3>";
+			echo "<div class='commands'>";
             foreach ($row as $data)
             {
-                echo "<div class='prod'>";
+				$quantity = array();
+				$id = array();
+
+				$idquant = explode(";", $data['products']);
+				foreach ($idquant as $str)
+				{
+					$i=1;
+					$exp = explode("=", $str);
+					foreach ($exp as $val)
+					{
+						if (!($i % 2))
+							$quantity[] = $val;
+						else
+							$id[] = $val;
+						$i++;
+						
+					}
+				}
+				echo "<div class='prod'>";
 				echo "<div class='left'>";
-				echo "<p class='prodtitle'>Login</p>";
-				echo "<input type='text' name='login' placeholder='". $data['login'] ."'>";
-				echo "<p class='prodtitle'>Password</p>";
-				echo "<input type='text' name='passwd' placeholder='". $data['password'] ."'>";
-				echo "<p class='prodtitle'>Email</p>";
-				echo "<input type='text' name='email' placeholder='". $data['email'] ."'>";
-				echo "<p class='prodtitle'>Admin</p>";
-				echo "<input type='text' name='admin' placeholder='". $data['admin'] ."'>";
-				echo "</div>";
-				echo "<div class='add'>";
-				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='prod_change' form='modif'>Change</button>";
-				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='prod_delete' form='modif'>Delete</button>";
+				echo "<p class='prodtitle'>LOGIN: ". $data['login'] ."</p>";
+				$j = 0;
+				foreach($id as $elem)
+				{
+					echo "<p class='prodtitle'>ID Article: ". $elem ." Quantity: ". $quantity[$j] ."</p>";
+					$j++;
+				}
+				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='user_delete' form='modif'>Delete</button>";
 				echo "</div>";
 				echo "</div>";
 			}
