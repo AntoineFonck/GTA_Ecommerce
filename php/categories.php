@@ -4,7 +4,6 @@ if(empty($_SESSION['basket']))
 	$_SESSION['basket'] = array();
 if($_POST['add'])
 	$_SESSION['basket'][] = $_POST['add'];
-print_r($_SESSION['basket']);
 $servername = "localhost";
 $username = "root";
 $password = "qwertyuiop";

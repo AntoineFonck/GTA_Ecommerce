@@ -64,7 +64,7 @@ mysqli_free_result($sql);
 
 $sql = "CREATE TABLE `commands` (
 	`id` int(11) NOT NULL,
-	`login` int(11) NOT NULL,
+	`login` char(255) NOT NULL,
 	`products` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 if (mysqli_query($link, $sql))
