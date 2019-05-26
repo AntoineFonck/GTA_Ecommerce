@@ -31,9 +31,9 @@ if (isset($_POST['login']) && isset($_POST['passwd']) && isset($_POST['email']) 
 		{
 			$insertquery = "INSERT INTO `users` (`login`, `password`, `email`, `admin`) VALUES ('$login', '$hashpw', '$email', '$admin')";
 			if (mysqli_query($link, $insertquery))
-				echo "<script>location.href='../views/sign.html'; alert('Your account has been created, please log in');</script>";
+				echo "<script>location.href='./admin.php'; alert('Account created');</script>";
 			else
-				echo "<script>location.href='../views/create.html'; alert('Your account couldn\'t be created');</script>";
+				echo "<script>location.href='./admin.php'; alert('Your account couldn\'t be created');</script>";
 		}
 }
 ?>
