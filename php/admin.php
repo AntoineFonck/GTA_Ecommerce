@@ -18,20 +18,6 @@ if (!$link) {
 if ($_POST['submit'] === "products" || $_POST['submit'] === "categories" || $_POST['submit'] === "users" || $_POST['submit'] === "commands")
 	$from = $_POST['submit'];
 	
-if ($_POST['add'] === 'add-prod' && $_POST['name'] !== "" && $_POST['pictures'] !== "" && $_POST['categorie1'] !== "" && $_POST['categorie2'] !== "" && $_POST['description'] !== "" && $_POST['price'] !== "")
-{
-	$name = mysqli_real_escape_string($_POST['name']);
-	$pictures = mysqli_real_escape_string($_POST['pictures']);
-	$categorie1 = mysqli_real_escape_string($_POST['categorie1']);
-	$categorie2 = mysqli_real_escape_string($_POST['categorie2']);
-	$description = mysqli_real_escape_string($_POST['description']);
-	$price = mysqli_real_escape_string($_POST['price']);
-	$sql = "INSERT INTO `products` (`name`, `price`, `description`, `categorie1`, `categorie2`, `pictures`) VALUES ('$name', '$price', '$description', '$categorie1', '$categorie2', '$pictures')";
-	if(mysqli_query($link, $sql))
-		echo "<script>location.href='./admin.php'; alert('Product created');</script>";
-	else
-		echo "<script>location.href='./admin.php'; alert('Problem Product not created');</script>";
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,7 +51,13 @@ if ($_POST['add'] === 'add-prod' && $_POST['name'] !== "" && $_POST['pictures'] 
 		<button class="catbtn" type="submit" value="users" name="submit" form="adminform">Users</button>
 		<button class="catbtn" type="submit" value="commands" name="submit" form="adminform">Commands</button>
 		<div id="products">
-		<form id="modif" action="admin.php" method="POST"></form>
+		<form id="productform" action="./productgestion.php" method="POST"></form>
+		<form id="productform2" action="./productgestion2.php" method="POST"></form>
+		<form id="userform" action="./usergestion.php" method="POST"></form>
+		<form id="userform2" action="./usergestion2.php" method="POST"></form>
+		<form id="cateform" action="./categestion.php" method="POST"></form>
+		<form id="cateform2" action="./categestion.php" method="POST"></form>
+		<form id="commandform" action="./commandgestion.php" method="POST"></form>
 	<?php
 	$query = "SELECT * FROM $from";
 	if ($result = mysqli_query($link, $query))
@@ -77,21 +69,21 @@ if ($_POST['add'] === 'add-prod' && $_POST['name'] !== "" && $_POST['pictures'] 
 			echo "<div class='prod'>";
 			echo "<div class='left'>";
 			echo "<p class='prodtitle'>Name</p>";
-			echo "<input type='text' name='name' placeholder='Name'>";
+			echo "<input value='' type='text' name='name' placeholder='Name' form='productform'>";
 			echo "<p class='prodtitle'>Image</p>";
-			echo "<input type='text' name='pictures' placeholder='Image'>";
+			echo "<input value='' type='text' name='pictures' placeholder='Image' form='productform'>";
 			echo "</div>";
 			echo "<div class='mid'>";
 			echo "<p class='catetitle'>Categorie 1 / Categorie 2</p>";
-			echo "<input type='text' name='categorie1' placeholder='Categorie 1'>";
-			echo "<input type='text' name='categorie2' placeholder='Categorie 2'>";
+			echo "<input value='' type='text' name='categorie1' placeholder='Categorie 1' form='productform'>";
+			echo "<input value='' type='text' name='categorie2' placeholder='Categorie 2' form='productform'>";
 			echo "<p class='catedesc'>Description</p>";
-			echo "<input type='text' name='description' placeholder='Description'>";
+			echo "<input value='' type='text' name='description' placeholder='Description' form='productform'>";
 			echo "<p class='pricetext'>Price in $</p>";
-			echo "<input type='text' name='price' placeholder='Price'>";
+			echo "<input value='' type='text' name='price' placeholder='Price' form='productform'>";
 			echo "</div>";
 			echo "<div class='add'>";
-			echo "<button class='catbtn' type='submit' value='add-prod' name='add' form='modif'>Add Article</button>";
+			echo "<button class='catbtn' type='submit' value='add-prod' name='add' form='productform'>Add Article</button>";
 			echo "</div>";
 			echo "</div>";
 
@@ -101,22 +93,22 @@ if ($_POST['add'] === 'add-prod' && $_POST['name'] !== "" && $_POST['pictures'] 
                 echo "<div class='prod'>";
 				echo "<div class='left'>";
 				echo "<p class='prodtitle'>Name</p>";
-				echo "<input type='text' name='name' placeholder='". $data['name'] ."'>";
+				echo "<input value='". $data['name'] ."' type='text' name='name' placeholder='". $data['name'] ."' form='productform2'>";
 				echo "<img src='". $data['pictures'] . "' alt='". $data['name'] . "'>";
-				echo "<input type='text' name='pictures' placeholder='". $data['pictures'] ."'>";
+				echo "<input value='". $data['pictures'] ."' type='text' name='pictures' placeholder='". $data['pictures'] ."' form='productform2'>";
 				echo "</div>";
 				echo "<div class='mid'>";
 				echo "<p class='catetitle'>". $data['categorie1'] ." / ". $data['categorie2'] . "</p>";
-				echo "<input type='text' name='categorie1' placeholder='". $data['categorie1'] ."'>";
-				echo "<input type='text' name='categorie2' placeholder='". $data['categorie2'] ."'>";
+				echo "<input value='". $data['categorie1'] ."' type='text' name='categorie1' placeholder='". $data['categorie1'] ."' form='productform2'>";
+				echo "<input value='". $data['categorie2'] ."' type='text' name='categorie2' placeholder='". $data['categorie2'] ."' form='productform2'>";
 				echo "<p class='catedesc'>". $data['description'] ."</p>";
-				echo "<input type='text' name='description' placeholder='". $data['description'] ."'>";
+				echo "<input value='". $data['description'] ."' type='text' name='description' placeholder='". $data['description'] ."' form='productform2'>";
 				echo "<p class='pricetext'>". $data['price'] ."$</p>";
-				echo "<input type='text' name='price' placeholder='". $data['price'] ."'>";
+				echo "<input value='". $data['price'] ."' type='text' name='price' placeholder='". $data['price'] ."' form='productform2'>";
 				echo "</div>";
 				echo "<div class='add'>";
-				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='prod_change' form='modif'>Change</button>";
-				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='prod_delete' form='modif'>Delete</button>";
+				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='prod_change' form='productform2'>Change</button>";
+				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='prod_delete' form='productform2'>Delete</button>";
 				echo "</div>";
 				echo "</div>";
             }
@@ -128,10 +120,10 @@ if ($_POST['add'] === 'add-prod' && $_POST['name'] !== "" && $_POST['pictures'] 
 				echo "<div class='prod'>";
 				echo "<div class='left'>";
 				echo "<p class='prodtitle'>Categorie Name</p>";
-				echo "<input type='text' name='name' placeholder='Categorie Name'>";
+				echo "<input value='' type='text' name='name' placeholder='Categorie Name' form='cateform'>";
 				echo "</div>";
 				echo "<div class='add'>";
-				echo "<button class='catbtn' type='submit' value='add-cate' name='add' form='modif'>Add Categorie</button>";
+				echo "<button class='catbtn' type='submit' value='add-cate' name='add' form='cateform'>Add Categorie</button>";
 				echo "</div>";
 				echo "</div>";
 
@@ -141,11 +133,11 @@ if ($_POST['add'] === 'add-prod' && $_POST['name'] !== "" && $_POST['pictures'] 
                 echo "<div class='prod'>";
 				echo "<div class='left'>";
 				echo "<p class='prodtitle'>Categorie Name</p>";
-				echo "<input type='text' name='name' placeholder='". $data['name'] ."'>";
+				echo "<input value='". $data['name'] ."' form='cateform2' type='text' name='name' placeholder='". $data['name'] ."'>";
 				echo "</div>";
 				echo "<div class='add'>";
-				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='cate_change' form='modif'>Change</button>";
-				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='cate_delete' form='modif'>Delete</button>";
+				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='cate_change' form='cateform2'>Change</button>";
+				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='cate_delete' form='cateform2'>Delete</button>";
 				echo "</div>";
 				echo "</div>";
 			}
@@ -158,16 +150,16 @@ if ($_POST['add'] === 'add-prod' && $_POST['name'] !== "" && $_POST['pictures'] 
 				echo "<div class='prod'>";
 				echo "<div class='left'>";
 				echo "<p class='prodtitle'>Login</p>";
-				echo "<input type='text' name='login' placeholder='Login'>";
+				echo "<input value='' type='text' name='login'  placeholder='Login' form='userform'>";
 				echo "<p class='prodtitle'>Password</p>";
-				echo "<input type='text' name='passwd' placeholder='Password'>";
+				echo "<input value='' type='text' name='passwd' placeholder='Password' form='userform'>";
 				echo "<p class='prodtitle'>Email</p>";
-				echo "<input type='text' name='email' placeholder='Email'>";
+				echo "<input value='' type='text' name='email' placeholder='Email' form='userform'>";
 				echo "<p class='prodtitle'>Admin</p>";
-				echo "<input type='text' name='admin' placeholder='Admin'>";
+				echo "<input value='' type='text' name='admin' placeholder='Admin' form='userform'>";
 				echo "</div>";
 				echo "<div class='add'>";
-				echo "<button class='catbtn' type='submit' value='add-user' name='add' form='modif'>Add User</button>";
+				echo "<input class='catbtn' type='submit' value='add-user' name='add' form='userform'>";
 				echo "</div>";
 				echo "</div>";
 
@@ -177,17 +169,17 @@ if ($_POST['add'] === 'add-prod' && $_POST['name'] !== "" && $_POST['pictures'] 
                 echo "<div class='prod'>";
 				echo "<div class='left'>";
 				echo "<p class='prodtitle'>Login</p>";
-				echo "<input type='text' name='login' placeholder='". $data['login'] ."'>";
+				echo "<input value='". $data['login'] ."' form='userform2' type='text' name='login' placeholder='". $data['login'] ."'>";
 				echo "<p class='prodtitle'>Password</p>";
-				echo "<input type='text' name='passwd' placeholder='". $data['password'] ."'>";
+				echo "<input value='". $data['password'] ."' form='userform2' type='text' name='passwd' placeholder='". $data['password'] ."'>";
 				echo "<p class='prodtitle'>Email</p>";
-				echo "<input type='text' name='email' placeholder='". $data['email'] ."'>";
+				echo "<input value='". $data['price'] ."' form='userform2' type='text' name='email' placeholder='". $data['email'] ."'>";
 				echo "<p class='prodtitle'>Admin</p>";
-				echo "<input type='text' name='admin' placeholder='". $data['admin'] ."'>";
+				echo "<input form='userform2' type='text' name='admin' placeholder='". $data['admin'] ."'>";
 				echo "</div>";
 				echo "<div class='add'>";
-				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='user_change' form='modif'>Change</button>";
-				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='user_delete' form='modif'>Delete</button>";
+				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='user_change' form='userform2'>Change</button>";
+				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='user_delete' form='userform2'>Delete</button>";
 				echo "</div>";
 				echo "</div>";
 			}
@@ -226,7 +218,7 @@ if ($_POST['add'] === 'add-prod' && $_POST['name'] !== "" && $_POST['pictures'] 
 					echo "<p class='prodtitle'>ID Article: ". $elem ." Quantity: ". $quantity[$j] ."</p>";
 					$j++;
 				}
-				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='user_delete' form='modif'>Delete</button>";
+				echo "<button class='catbtn' type='submit' value='" . $data['id'] . "' name='user_delete' form='commandform'>Delete</button>";
 				echo "</div>";
 				echo "</div>";
 			}
