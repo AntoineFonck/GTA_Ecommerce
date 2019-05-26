@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
 $username = "root";
-//$password = "qwertyuiop";
-$password = "Qfadene";
+$password = "qwertyuiop";
+//$password = "Qfadene";
 $dbname = "gun_shop";
 
 $link = mysqli_connect($servername, $username, $password);
@@ -101,7 +101,7 @@ $sql = "INSERT INTO `products` (`id`, `name`, `price`, `description`, `categorie
 (10, 'Marksman Rifle', 3200, 'Whether you\'re up close or a disconcertingly long way away, this weapon will get the job done. A multi-range tool for tools.', 'Sniper_Rifles', 'BANG', 'https://www.gtabase.com/images/gta-5/weapons/sniper-rifles/marksman-rifle.png'),
 (11, 'Heavy Sniper', 4000, 'Features armor-piercing rounds for heavy damage. Comes with laser scope as standard.', 'Sniper_Rifles', 'BANG', 'https://img.gta5-mods.com/q75/images/heavy-sniper-new-sound-barrett-50-caliber/003c43-GTAV-heavy-sniper.png'),
 (12, 'Rocket Launcher', 9500, 'A portable, shoulder-launched, anti-tank weapon that fires explosive warheads. Very effective for taking down vehicles or large groups of assailants.', 'Heavy_Weapons', 'BOOM', 'https://www.gtabase.com/images/gta-5/weapons/heavy/rpg.png'),
-(13, 'https://gta.fandom.com/wiki/Grenade_Launcher', 7000, 'A compact, lightweight grenade launcher with semi-automatic functionality. Holds up to 10 rounds.', 'Heavy_Weapons', 'BOOM', 'https://www.gtabase.com/images/gta-5/weapons/heavy/grenade-launcher.png'),
+(13, 'Grenade_Launcher', 7000, 'A compact, lightweight grenade launcher with semi-automatic functionality. Holds up to 10 rounds.', 'Heavy_Weapons', 'BOOM', 'https://www.gtabase.com/images/gta-5/weapons/heavy/grenade-launcher.png'),
 (14, 'Grenade', 150, 'Standard fragmentation grenade. Pull pin, throw, then find cover. Ideal for eliminating clustered assailants.', 'Thrown_Weapons', 'BOOM', 'https://vignette.wikia.nocookie.net/gtawiki/images/5/52/Grenade-GTAV.png/revision/latest/scale-to-width-down/350?cb=20161222140933'),
 (15, 'Molotov Cocktails', 50, 'Crude yet highly effective incendiary weapon. No happy hour with this cocktail.', 'Thrown_Weapons', 'BOOM', 'https://vignette.wikia.nocookie.net/gtawiki/images/6/6b/MolotovCocktail-GTAV.png/revision/latest/scale-to-width-down/350?cb=20140204073634');";
 if (mysqli_query($link, $sql))
