@@ -8,7 +8,7 @@
 
 body{
     background:#1b1b2b;
-    padding:75px;
+    padding:3vmin;
     text-align:center;
     font-family: 'Oswald', sans-serif;
 }
@@ -17,6 +17,12 @@ h1{
     color:#c0c0c0;
     font-weight:100;
     font-size: 5vmin;
+}
+
+h3{
+    color:#ececec;
+    font-weight:100;
+    font-size: 3vmin;
 }
 
 select {
@@ -49,7 +55,7 @@ select {
 
 .signform{
     margin: 0 auto;
-    padding: 10vmin 0;
+    padding: 2vmin 0;
     width: 30vmin;
     display: flex;
     flex-direction: column;
@@ -80,7 +86,7 @@ select {
 }
 
 .space{
-    height: 10vmin;;
+    height: 5vmin;;
 }
 
 .home{
@@ -95,6 +101,24 @@ select {
 }
 
 .home:hover{
+    border:none;
+    background:rgba(0, 0, 0, 0.4);
+    background:#fff;
+    padding:20px 20px;
+    color:#1b1b1b;
+}
+
+.homecat{
+    color:#999;
+    background:rgba(0, 0, 0, 0.5);
+    padding:10px 20px;
+    font-size:5vmin;
+    text-decoration:none;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.homecat:hover{
     border:none;
     background:rgba(0, 0, 0, 0.4);
     background:#fff;
@@ -170,6 +194,7 @@ select {
     display: flex;
     flex-direction: column;
     margin: auto 1vmin;
+    width: 50vw;
 }
 
 .price{
@@ -178,4 +203,57 @@ select {
 
 .add{
     margin: auto 1vmin;
+}
+
+#contact{
+    display: flex;
+    flex-direction: column;
+}
+
+#contact iframe{
+    width: 60vmin;
+    height: 40vmin;
+    margin: 0 auto;
+}
+
+.legend{
+        color:#ffffff;
+        font-weight:50;
+        font-size: 2vmin;
+        margin: 1vmin 0 5vmin 0;
+}
+.map{
+    display: flex;
+    justify-content: center;
+}
+.map img{
+    margin: 0 1vmin;
+    width: 30vmin;
+    height: 30vmin;
+}
+
+#homevideo img{
+    margin: 5vmin;
+    width: 80vw;
+    height: 50vmin;
+    opacity: 0.3;
+    border-radius: 5px;
+}
+
+.productsbtn{
+    color:rgb(240, 240, 240);
+    background:rgba(0, 0, 0, 0.5);
+    padding:2vmin 5vmin;
+    font-size:5vmin;
+    text-decoration:none;
+    letter-spacing:4px;
+    text-transform:uppercase;
+}
+    
+.productsbtn:hover{
+    border:none;
+    background:rgba(0, 0, 0, 0.4);
+    background:#fff;
+    padding:4vmin 5vmin;
+    color:#1b1b1b;
 }

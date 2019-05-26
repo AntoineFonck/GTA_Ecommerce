@@ -27,6 +27,10 @@ else
 		else
 			echo "<a href='./php/logout.php' class='btn'>Log out</a>";
 		?>
-        <a href="./views/contact.html" class="btn">Contact</a>
+        <a href="./php/contact.php" class="btn">Contact</a>
+        <div id='homevideo'>
+            <img src="http://www.searchmap.eu/blog/wp-content/uploads/2015/05/zyjWZWo.gif" alt="Cargun">
+        </div>
+        <a href="./php/categories.php" class="productsbtn">Let's see all products !!</a>
     </body>
 </html>
