@@ -3,8 +3,8 @@ session_start();
 
 $servername = "localhost";
 $username = "root";
-//$password = "qwertyuiop";
-$password = "Qfadene";
+$password = "qwertyuiop";
+//$password = "Qfadene";
 $dbname = "gun_shop";
 
 $link = mysqli_connect($servername, $username, $password, $dbname);
@@ -14,6 +14,14 @@ if (!$link) {
 	echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
 	exit;
 }
+
+if (!empty($_SESSION['basket']) && $_POST['delete'])
+{
+	$id = array_search($_POST['delete'], $_SESSION['basket']);
+	unset($_SESSION['basket'][$id]);
+}
+if (empty($_SESSION['basket']) && $_POST['submit'] === "OK")
+	echo "<script>location.href='basket.php'; alert('Your basket is empty, you can\'t validate');</script>";
 if (!empty($_SESSION['basket']) && $_POST['submit'] === "OK" && !empty($_SESSION['username']))
 {
 	sort($_SESSION['basket']);
@@ -25,7 +33,10 @@ if (!empty($_SESSION['basket']) && $_POST['submit'] === "OK" && !empty($_SESSION
 	$current_user = $_SESSION['username'];
 	$sql = "INSERT INTO `commands` (`login`, `products`) VALUES ('$current_user', '$strdata');";
 	if (mysqli_query($link, $sql))
+	{
 		echo "<script>location.href='../index.php'; alert('Your command was validated');</script>";
+		$_SESSION['basket'] = "";
+	}
 	else
 		echo "<script>location.href='../index.php'; alert('There was an issue, your command was not validated');</script>";
 }
@@ -63,16 +74,15 @@ else if (!empty($_SESSION['basket']) && $_POST['submit'] === "OK" && empty($_SES
                 echo "<img src='" . $row['pictures'] . "' alt='" . $row['name'] . "'>";
                 echo "</div>";
                 echo "<div class='price'>";
-                echo "<p class='pricetext'>" . $row['price'] . "$. QUANT=x" . $quant ."</p>";
+                echo "<p class='pricetext'>" . $row['price'] . "$ / QUANT=x" . $quant ."</p>";
+        		echo "<button class='catbtn' type='submit' value='".$row['id']."' name='delete' form='validate'>Delete x1 product</button>";
                 echo "</div>";
                 echo "</div>";
 			}
 		}
-        echo "<p class='totalprice'>" . $tot . "$</p>";
-        ?>
-		<?php
 		if (!empty($_SESSION['basket']))
-        	echo "<button class='catokbtn mr' type='submit' onsubmit='return confirm("."'Do you want to make these changes ?'".");' value='OK' name='submit' form='validate'>Validate Basket</button>";
+        	echo "<p class='totalprice'>" . $tot . "$</p>";
+        	echo "<button class='catokbtn mr' type='submit' value='OK' name='submit' form='validate'>Validate Basket</button>";
 		?>
 		</div>
 	</body>

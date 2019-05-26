@@ -6,8 +6,8 @@ if($_POST['add'])
 	$_SESSION['basket'][] = $_POST['add'];
 $servername = "localhost";
 $username = "root";
-//$password = "qwertyuiop";
-$password = "Qfadene";
+$password = "qwertyuiop";
+//$password = "Qfadene";
 $dbname = "gun_shop";
 
 $link = mysqli_connect($servername, $username, $password, $dbname);
@@ -30,7 +30,7 @@ if (!$link) {
 	<body>
 		<h1>Categories</h1>
 		<form id="catform" action="categories.php" method="POST"></form>
-		<select name="carlist" form="carform">
+		<select name="catlist" form="carform">
 			<option value="volvo">Volvo</option>
 			<option value="saab">Saab</option>
 			<option value="opel">Opel</option>
