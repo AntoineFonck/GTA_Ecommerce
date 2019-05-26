@@ -77,6 +77,11 @@ if (!$link) {
 		<button class="catbtn" type="submit" value="Bang" name="submit" form="catform">Bang</button>
 		<button class="catbtn" type="submit" value="Bang_Bang" name="submit" form="catform">Bang-Bang</button>
 		<button class="catbtn" type="submit" value="Boom" name="submit" form="catform">Boom</button>
+
+		<?php
+			echo "<h3>". $from ."</h3>"; 
+		?>
+
 		<div id="products">
 <?php
 			if (!empty($from))

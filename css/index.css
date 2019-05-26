@@ -23,6 +23,7 @@ h3{
     color:#ececec;
     font-weight:100;
     font-size: 3vmin;
+    text-transform: uppercase;
 }
 
 select {
@@ -43,7 +44,7 @@ select {
     font-size:2vmin;
     text-decoration:none;
     letter-spacing:2px;
-    text-transform:uppercase;
+    text-transform: uppercase;
 }
 
 .btn:hover{

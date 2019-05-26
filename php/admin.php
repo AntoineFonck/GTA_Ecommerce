@@ -4,8 +4,8 @@ if ($_SESSION['rights'] !== 10)
     exit("<script>location.href='../index.php'; alert('You are not an admin ".$_SESSION['rights']."');</script>");
 $servername = "localhost";
 $username = "root";
-$password = "qwertyuiop";
-//$password = "Qfadene";
+//$password = "qwertyuiop";
+$password = "Qfadene";
 $dbname = "gun_shop";
 
 $link = mysqli_connect($servername, $username, $password, $dbname);
@@ -16,7 +16,22 @@ if (!$link) {
 	exit;
 }
 if ($_POST['submit'] === "products" || $_POST['submit'] === "categories" || $_POST['submit'] === "users" || $_POST['submit'] === "commands")
-    $from = $_POST['submit'];
+	$from = $_POST['submit'];
+	
+if ($_POST['add'] === 'add-prod' && $_POST['name'] !== "" && $_POST['pictures'] !== "" && $_POST['categorie1'] !== "" && $_POST['categorie2'] !== "" && $_POST['description'] !== "" && $_POST['price'] !== "")
+{
+	$name = mysqli_real_escape_string($_POST['name']);
+	$pictures = mysqli_real_escape_string($_POST['pictures']);
+	$categorie1 = mysqli_real_escape_string($_POST['categorie1']);
+	$categorie2 = mysqli_real_escape_string($_POST['categorie2']);
+	$description = mysqli_real_escape_string($_POST['description']);
+	$price = mysqli_real_escape_string($_POST['price']);
+	$sql = "INSERT INTO `products` (`name`, `price`, `description`, `categorie1`, `categorie2`, `pictures`) VALUES ('$name', '$price', '$description', '$categorie1', '$categorie2', '$pictures')";
+	if(mysqli_query($link, $sql))
+		echo "<script>location.href='./admin.php'; alert('Product created');</script>";
+	else
+		echo "<script>location.href='./admin.php'; alert('Problem Product not created');</script>";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,7 +65,7 @@ if ($_POST['submit'] === "products" || $_POST['submit'] === "categories" || $_PO
 		<button class="catbtn" type="submit" value="users" name="submit" form="adminform">Users</button>
 		<button class="catbtn" type="submit" value="commands" name="submit" form="adminform">Commands</button>
 		<div id="products">
-		<form id="modif" action="categories.php" method="POST"></form>
+		<form id="modif" action="admin.php" method="POST"></form>
 	<?php
 	$query = "SELECT * FROM $from";
 	if ($result = mysqli_query($link, $query))
