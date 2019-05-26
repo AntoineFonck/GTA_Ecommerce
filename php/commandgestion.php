@@ -3,7 +3,7 @@ session_start();
 if ($_SESSION['rights'] !== 10)
 	exit("<script>location.href='../index.php'; alert('You are not an admin ".$_SESSION['rights']."');</script>");
 $servername = "localhost";
-$password = "qwertyuiop";
+//$password = "qwertyuiop";
 $password = "Qfadene";
 $username = "root";
 $dbname = "gun_shop";

@@ -276,15 +276,23 @@ select {
     margin: 2vmin;
 }
 
-.totprice{
-   color: white;
-}
-
-#totprice{
-    color: white;
- }
-
 .basket{
     display: flex;
     flex-direction: column;
+}
+
+.catedesc{
+    font-size: 2vmin;
+}
+
+.catetitle{
+    font-size: 2vmin;
+}
+
+.prodtitle{
+    font-size: 2vmin;
+}
+
+.pricetext{
+    font-size: 2vmin;
 }

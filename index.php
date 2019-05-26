@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$password = "qwertyuiop";
-//$password = "Qfadene";
+//$password = "qwertyuiop";
+$password = "Qfadene";
 $username = "root";
 $dbname = "gun_shop";
 
